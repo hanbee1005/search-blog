@@ -1,0 +1,7 @@
+external:
+  host:
+    kakao: https://dapi.kakao.com
+  api:
+    kakao-search: ${external.host.kakao}/v2/search
+  auth:
+    kakao: KakaoAK ${KAKAO_REST_API_KEY}
