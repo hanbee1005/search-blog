@@ -1,4 +1,4 @@
-package com.task.searchblog.term.domain;
+package com.task.searchblog.term.application.model;
 
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -6,12 +6,12 @@ import lombok.NoArgsConstructor;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
-public class KeywordTopTen {
-    private String keyword;
+public class TermQuery {
+    private String term;
     private Long count;
 
-    public KeywordTopTen(String keyword, Long count) {
-        this.keyword = keyword;
+    public TermQuery(String term, Long count) {
+        this.term = term;
         this.count = count;
     }
 }
