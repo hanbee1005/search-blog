@@ -16,7 +16,7 @@ public class QueryDslSearchRepositoryImpl implements QueryDslSearchRepository {
     private final JPAQueryFactory jpaQueryFactory;
 
     @Override
-    public List<KeywordTopTen> searchTopTenKeyword(int limit) {
+    public List<KeywordTopTen> searchTopKeyword(int limit) {
         NumberPath<Long> count = Expressions.numberPath(Long.class, "cnt");
         return jpaQueryFactory
                 .select(new QKeywordTopTen(search.keyword, search.id.count().as("cnt")))
