@@ -1,15 +1,27 @@
 package com.task.searchblog.common.config;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.task.searchblog.common.exception.BusinessException;
+import com.task.searchblog.common.exception.ExternalClientCanNotProceedException;
+import com.task.searchblog.common.model.KakaoRestApiErrorResponse;
 import feign.Logger;
 import feign.RequestInterceptor;
+import feign.Response;
 import feign.Retryer;
 import feign.codec.ErrorDecoder;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.io.IOUtils;
+import org.apache.logging.log4j.util.Strings;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpStatus;
 
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
+
+import static com.task.searchblog.common.exception.ExceptionType.*;
 
 @Slf4j
 public class KakaoFeignClientConfig {
@@ -17,6 +29,7 @@ public class KakaoFeignClientConfig {
     private String auth;
 
     private static final String AUTHORIZATION = "Authorization";
+    private static final String EXCEPTION_MESSAGE_FORMAT = "[%s] : %s";
     private static final int PERIOD = 1000;
     private static final int MAX_PERIOD = 2000;
     private static final int MAX_ATTEMPTS = 1;
@@ -39,9 +52,20 @@ public class KakaoFeignClientConfig {
                 return null;
             }
 
-            // TODO 추가 에러 처리 예정
+            try {
+                KakaoRestApiErrorResponse exception = new ObjectMapper().readValue(getBodyString(response), KakaoRestApiErrorResponse.class);
+                if (MISSING_PARAMETER.getStatus() == responseStatus.value()) {
+                    return new ExternalClientCanNotProceedException(MISSING_PARAMETER, exception.getMessage());
+                }
+            } catch (JsonProcessingException e) {
+                e.printStackTrace();
+            }
 
-            return null;
+            return new ExternalClientCanNotProceedException(UNEXPECTED,
+                    String.format(EXCEPTION_MESSAGE_FORMAT,
+                            methodKey,
+                            getBodyString(response))
+            );
         };
     }
 
@@ -53,5 +77,18 @@ public class KakaoFeignClientConfig {
         return template -> {
             template.header(AUTHORIZATION, auth);
         };
+    }
+
+    private String getBodyString(Response response) {
+        if (null == response || null == response.body()) {
+            return Strings.EMPTY;
+        }
+
+        try {
+            return IOUtils.toString(response.body().asReader(StandardCharsets.UTF_8));
+        } catch (IOException e) {
+            e.printStackTrace();
+            throw new BusinessException(UNEXPECTED, e.getMessage());
+        }
     }
 }
