@@ -15,10 +15,9 @@ public class TermCommandService {
     private final TermRedisRepository termRedisRepository;
 
     public void increaseTermCount(String key) {
-        termRedisRepository.findById(key)
-                .ifPresentOrElse(term -> {
-                    term.updateCount();
-                    termRedisRepository.save(term);
-                }, () -> termRedisRepository.save(Term.create(key)));
+        Term term = termRedisRepository.findById(key).orElse(Term.create(key));
+        term.updateCount();
+
+        termRedisRepository.save(term);
     }
 }

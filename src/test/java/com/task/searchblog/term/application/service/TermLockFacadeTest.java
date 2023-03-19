@@ -12,10 +12,14 @@ import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 @SpringBootTest
-class TermCommandServiceTest {
-    @Autowired TermLockFacade termLockFacade;
-    @Autowired TermRedisRepository termRedisRepository;
+class TermLockFacadeTest {
+    @Autowired
+    TermLockFacade termLockFacade;
+    @Autowired
+    TermRedisRepository termRedisRepository;
 
     @Test
     @DisplayName("동시에 100명이 같은 키워드 조회")

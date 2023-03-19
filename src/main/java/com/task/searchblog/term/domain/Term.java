@@ -1,6 +1,5 @@
 package com.task.searchblog.term.domain;
 
-import lombok.Builder;
 import lombok.Getter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.redis.core.RedisHash;
@@ -12,14 +11,12 @@ public class Term {
     private String term;
     private int count;
 
-    @Builder
-    private Term(String term, int count) {
+    private Term(String term) {
         this.term = term;
-        this.count = count;
     }
 
     public static Term create(String term) {
-        return new Term(term, 1);
+        return new Term(term);
     }
 
     public void updateCount() {
