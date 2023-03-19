@@ -1,5 +1,6 @@
 package com.task.searchblog.blog.adapter.in.web.model;
 
+import com.task.searchblog.common.constant.SearchBlogSortType;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
@@ -15,7 +16,7 @@ public class SearchBlogRequest {
     @NotBlank
     String query;
 
-    String sort;
+    SearchBlogSortType sort;
 
     @Min(1) @Max(50)
     Integer page = 1;
