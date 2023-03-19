@@ -5,3 +5,7 @@ external:
     kakao-search: ${external.host.kakao}/v2/search
   auth:
     kakao: KakaoAK ${KAKAO_REST_API_KEY}
+
+logging:
+  level:
+    com.task.searchblog: debug

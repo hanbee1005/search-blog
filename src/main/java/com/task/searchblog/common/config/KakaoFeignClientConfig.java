@@ -4,13 +4,15 @@ import feign.Logger;
 import feign.RequestInterceptor;
 import feign.Retryer;
 import feign.codec.ErrorDecoder;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpStatus;
 
 import java.util.List;
 
-public class KakaoSearchBlogFeignClientConfig {
+@Slf4j
+public class KakaoFeignClientConfig {
     @Value("${external.auth.kakao}")
     private String auth;
 
@@ -33,6 +35,7 @@ public class KakaoSearchBlogFeignClientConfig {
             HttpStatus responseStatus = HttpStatus.resolve(response.status());
 
             if (NORMAL_STATUS.contains(responseStatus)) {
+                log.error(response.toString());
                 return null;
             }
 
