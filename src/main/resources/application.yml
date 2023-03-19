@@ -1,3 +1,24 @@
+spring:
+  datasource:
+    url: jdbc:h2:tcp://localhost/~/search-blog
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+        format_sql: true
+        use_sql_comments: true
+#        show_sql: true
+
+logging.level:
+  org.hibernate.SQL: debug
+  org.hibernate.type: trace
+  com.task.searchblog: debug
+
 external:
   host:
     kakao: https://dapi.kakao.com
@@ -5,7 +26,3 @@ external:
     kakao-search: ${external.host.kakao}/v2/search
   auth:
     kakao: KakaoAK ${KAKAO_REST_API_KEY}
-
-logging:
-  level:
-    com.task.searchblog: debug
