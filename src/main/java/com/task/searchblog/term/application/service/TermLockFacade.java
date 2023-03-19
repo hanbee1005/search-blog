@@ -1,4 +1,4 @@
-package com.task.searchblog.search.application.service;
+package com.task.searchblog.term.application.service;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

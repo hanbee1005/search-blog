@@ -1,4 +1,4 @@
-package com.task.searchblog.search.domain;
+package com.task.searchblog.term.domain;
 
 import lombok.Builder;
 import lombok.Getter;

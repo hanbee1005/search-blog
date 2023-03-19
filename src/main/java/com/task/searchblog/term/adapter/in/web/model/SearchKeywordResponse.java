@@ -1,6 +1,6 @@
-package com.task.searchblog.search.adapter.in.web.model;
+package com.task.searchblog.term.adapter.in.web.model;
 
-import com.task.searchblog.search.domain.KeywordTopTen;
+import com.task.searchblog.term.domain.KeywordTopTen;
 import lombok.Builder;
 import lombok.Getter;
 

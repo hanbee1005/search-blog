@@ -1,7 +1,7 @@
-package com.task.searchblog.search.application.service;
+package com.task.searchblog.term.application.service;
 
-import com.task.searchblog.search.adapter.out.persistance.TermRedisRepository;
-import com.task.searchblog.search.domain.Term;
+import com.task.searchblog.term.adapter.out.persistance.TermRedisRepository;
+import com.task.searchblog.term.domain.Term;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

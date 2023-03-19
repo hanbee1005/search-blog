@@ -1,6 +1,6 @@
-package com.task.searchblog.search.adapter.out.persistance;
+package com.task.searchblog.term.adapter.out.persistance;
 
-import com.task.searchblog.search.domain.Term;
+import com.task.searchblog.term.domain.Term;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -14,7 +14,6 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 @Slf4j
 @SpringBootTest
