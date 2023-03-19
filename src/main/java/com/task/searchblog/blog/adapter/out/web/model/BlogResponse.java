@@ -1,12 +1,14 @@
 package com.task.searchblog.blog.adapter.out.web.model;
 
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
 import lombok.experimental.FieldDefaults;
 
 @ToString
 @Getter
+@Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class BlogResponse {
     String blogname;
