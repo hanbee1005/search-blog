@@ -3,6 +3,7 @@ package com.task.searchblog.common.config;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.task.searchblog.common.exception.ExternalClientCanNotProceedException;
+import com.task.searchblog.common.exception.KakaoClientException;
 import com.task.searchblog.common.model.KakaoRestApiErrorResponse;
 import feign.RequestInterceptor;
 import feign.codec.ErrorDecoder;
@@ -41,11 +42,7 @@ public class KakaoFeignClientConfig extends FeignClientConfig {
                 e.printStackTrace();
             }
 
-            return new ExternalClientCanNotProceedException(UNEXPECTED,
-                    String.format(EXCEPTION_MESSAGE_FORMAT,
-                            methodKey,
-                            getBodyString(response))
-            );
+            throw new KakaoClientException();
         };
     }
 
