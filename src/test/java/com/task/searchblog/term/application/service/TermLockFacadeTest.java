@@ -22,11 +22,11 @@ class TermLockFacadeTest {
     TermRedisRepository termRedisRepository;
 
     @Test
-    @DisplayName("동시에 100명이 같은 키워드 조회")
+    @DisplayName("동시에 1000명이 같은 키워드 조회")
     public void addTerm() throws InterruptedException {
         // given
         int threadCount = 1000;
-        String term = "테스트코드";
+        String term = "카카오뱅크";
         ExecutorService executorService = Executors.newFixedThreadPool(threadCount);
         CountDownLatch countDownLatch = new CountDownLatch(threadCount);
 
