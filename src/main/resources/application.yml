@@ -25,7 +25,12 @@ logging.level:
 external:
   host:
     kakao: https://dapi.kakao.com
+    naver: https://openapi.naver.com
   api:
     kakao-search: ${external.host.kakao}/v2/search
+    naver-search: ${external.host.naver}/v1/search
   auth:
-    kakao: KakaoAK ${KAKAO_REST_API_KEY}
+    kakao: KakaoAK ${YOUR_KAKAO_API_KEY}
+    naver:
+      client-id: ${YOUR_X_NAVER_CLIENT_ID}
+      client-secret: ${YOUR_X_NAVER_CLIENT_SECRET}
