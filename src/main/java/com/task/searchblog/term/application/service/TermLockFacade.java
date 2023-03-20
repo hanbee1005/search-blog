@@ -6,8 +6,9 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.redisson.api.RLock;
 import org.redisson.api.RedissonClient;
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.concurrent.TimeUnit;
 
@@ -23,7 +24,7 @@ public class TermLockFacade {
     private final TermCommandService termCommandService;
     private final RedissonClient redissonClient;
 
-    @Async
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
     public void increaseTermCount(final String term) {
         RLock lock = redissonClient.getLock(String.format(LOCK_KEY_FOR_INCREASE_COUNT, term));
         try {

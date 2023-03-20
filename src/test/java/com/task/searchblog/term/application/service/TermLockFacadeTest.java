@@ -25,12 +25,13 @@ class TermLockFacadeTest {
     @DisplayName("동시에 100명이 같은 키워드 조회")
     public void addTerm() throws InterruptedException {
         // given
-        String term = "카카오뱅크";
-        ExecutorService executorService = Executors.newFixedThreadPool(100);
-        CountDownLatch countDownLatch = new CountDownLatch(100);
+        int threadCount = 1000;
+        String term = "테스트코드";
+        ExecutorService executorService = Executors.newFixedThreadPool(threadCount);
+        CountDownLatch countDownLatch = new CountDownLatch(threadCount);
 
         // when
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < threadCount; i++) {
             executorService.submit(() -> {
                 try {
                     termLockFacade.increaseTermCount(term);
@@ -43,6 +44,6 @@ class TermLockFacadeTest {
         // then
         countDownLatch.await();
         Term findTerm = termRedisRepository.findById(term).orElseThrow();
-        Assertions.assertThat(findTerm.getCount()).isEqualTo(100);
+        Assertions.assertThat(findTerm.getCount()).isEqualTo(threadCount);
     }
 }
