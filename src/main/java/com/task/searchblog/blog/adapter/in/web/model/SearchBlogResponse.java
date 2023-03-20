@@ -1,7 +1,7 @@
 package com.task.searchblog.blog.adapter.in.web.model;
 
 import com.task.searchblog.blog.application.model.BlogDto;
-import com.task.searchblog.blog.application.model.SearchBlogQuery;
+import com.task.searchblog.blog.application.model.SearchBlogDto;
 import com.task.searchblog.common.model.SlicePageResponse;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -19,7 +19,7 @@ public class SearchBlogResponse extends SlicePageResponse {
         this.blogs = blogs;
     }
 
-    public static SearchBlogResponse of(SearchBlogQuery query) {
+    public static SearchBlogResponse of(SearchBlogDto query) {
         return new SearchBlogResponse(query.getPage(), query.getSize(), query.isHasNext(), query.getBlogs());
     }
 }

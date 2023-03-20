@@ -13,6 +13,7 @@ public enum ExceptionType {
     // business
     INVALID_REQUEST("401", HttpStatus.BAD_REQUEST.value(), "exception.common.validation.request"),
     MISSING_PARAMETER("402", HttpStatus.BAD_REQUEST.value(), "exception.external.missing.parameter"),
+    INVALID_AUTH("403", HttpStatus.UNAUTHORIZED.value(), "exception.external.invalid.auth"),
     REDIS_LOCK_TIMEOUT("501", HttpStatus.INTERNAL_SERVER_ERROR.value(), "exception.timeout.redis")
     ;
 

@@ -3,7 +3,7 @@ package com.task.searchblog.blog.application.service;
 import com.task.searchblog.blog.adapter.in.web.model.SearchBlogRequest;
 import com.task.searchblog.blog.adapter.out.web.KakaoSearchBlogAdapter;
 import com.task.searchblog.blog.adapter.out.web.model.KakaoSearchBlogResponse;
-import com.task.searchblog.blog.application.model.SearchBlogQuery;
+import com.task.searchblog.blog.application.model.SearchBlogDto;
 import com.task.searchblog.blog.application.service.mock.MockModel;
 import com.task.searchblog.common.constant.SearchBlogSortType;
 import org.junit.jupiter.api.DisplayName;
@@ -14,8 +14,8 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.BDDMockito.given;
 
 @ExtendWith(MockitoExtension.class)
@@ -38,10 +38,10 @@ class BlogQueryServiceTest {
         SearchBlogRequest request = MockModel.getSearchBlogRequest(query, sort, page, size);
 
         KakaoSearchBlogResponse kakaoSearchBlogResponse = MockModel.getKakaoSearchBlogResponse(size);
-        given(kakaoSearchBlogAdapter.searchBlog(any())).willReturn(kakaoSearchBlogResponse);
+        given(kakaoSearchBlogAdapter.searchBlog(any(), any(), anyInt(), anyInt())).willReturn(kakaoSearchBlogResponse);
 
         // when
-        SearchBlogQuery response = blogQueryService.searchBlog(request);
+        SearchBlogDto response = blogQueryService.searchBlog(request);
 
         // then
         assertThat(response.getPage()).isEqualTo(page);

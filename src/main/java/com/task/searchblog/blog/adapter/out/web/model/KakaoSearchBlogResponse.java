@@ -1,6 +1,8 @@
 package com.task.searchblog.blog.adapter.out.web.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.task.searchblog.blog.application.model.BlogDto;
+import com.task.searchblog.blog.application.model.SearchBlogDto;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -8,12 +10,13 @@ import lombok.ToString;
 import lombok.experimental.FieldDefaults;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @ToString
 @Getter
 @Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class KakaoSearchBlogResponse {
+public class KakaoSearchBlogResponse implements SearchBlogResponse {
     Meta meta;
     List<Document> documents;
 
@@ -41,5 +44,25 @@ public class KakaoSearchBlogResponse {
         String thumbnail;
         String title;
         String url;
+
+        public BlogDto toDto() {
+            return BlogDto.builder()
+                    .blogname(blogname)
+                    .contents(contents)
+                    .datetime(datetime)
+                    .thumbnail(thumbnail)
+                    .title(title)
+                    .url(url)
+                    .build();
+        }
+    }
+
+    public SearchBlogDto toDto(int page, int size) {
+        return SearchBlogDto.builder()
+                .page(page)
+                .size(size)
+                .hasNext(!meta.isEnd)
+                .blogs(documents.stream().map(Document::toDto).collect(Collectors.toList()))
+                .build();
     }
 }

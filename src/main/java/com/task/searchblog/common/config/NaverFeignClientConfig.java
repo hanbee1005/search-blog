@@ -3,7 +3,7 @@ package com.task.searchblog.common.config;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.task.searchblog.common.exception.ExternalClientCanNotProceedException;
-import com.task.searchblog.common.model.KakaoRestApiErrorResponse;
+import com.task.searchblog.common.model.NaverRestApiErrorResponse;
 import feign.RequestInterceptor;
 import feign.codec.ErrorDecoder;
 import lombok.extern.slf4j.Slf4j;
@@ -14,11 +14,15 @@ import org.springframework.http.HttpStatus;
 import static com.task.searchblog.common.exception.ExceptionType.*;
 
 @Slf4j
-public class KakaoFeignClientConfig extends FeignClientConfig {
-    @Value("${external.auth.kakao}")
-    private String auth;
+public class NaverFeignClientConfig extends FeignClientConfig {
+    @Value("${external.auth.naver.client-id}")
+    private String clientId;
 
-    private static final String AUTHORIZATION = "Authorization";
+    @Value("${external.auth.naver.client-secret}")
+    private String clientSecret;
+
+    private static final String X_NAVER_CLIENT_ID = "X-Naver-Client-Id";
+    private static final String X_NAVER_CLIENT_SECRET = "X-Naver-Client-Secret";
 
     @Bean
     public ErrorDecoder decoder() {
@@ -31,11 +35,13 @@ public class KakaoFeignClientConfig extends FeignClientConfig {
             }
 
             try {
-                KakaoRestApiErrorResponse exception = new ObjectMapper().readValue(getBodyString(response), KakaoRestApiErrorResponse.class);
+                NaverRestApiErrorResponse exception = new ObjectMapper().readValue(getBodyString(response), NaverRestApiErrorResponse.class);
                 if (MISSING_PARAMETER.getStatus() == responseStatus.value()) {
-                    return new ExternalClientCanNotProceedException(MISSING_PARAMETER, exception.getMessage());
-                } else if(INVALID_AUTH.getStatus() == responseStatus.value()) {
-                    return new ExternalClientCanNotProceedException(INVALID_AUTH, exception.getMessage());
+                    return new ExternalClientCanNotProceedException(MISSING_PARAMETER,
+                            String.format(EXCEPTION_MESSAGE_FORMAT, exception.getErrorCode(), exception.getErrorMessage()));
+                } else if (NOT_FOUND.getStatus() == responseStatus.value()) {
+                    return new ExternalClientCanNotProceedException(NOT_FOUND,
+                            String.format(EXCEPTION_MESSAGE_FORMAT, exception.getErrorCode(), exception.getErrorMessage()));
                 }
             } catch (JsonProcessingException e) {
                 e.printStackTrace();
@@ -52,7 +58,8 @@ public class KakaoFeignClientConfig extends FeignClientConfig {
     @Bean
     public RequestInterceptor requestInterceptor() {
         return template -> {
-            template.header(AUTHORIZATION, auth);
+            template.header(X_NAVER_CLIENT_ID, clientId);
+            template.header(X_NAVER_CLIENT_SECRET, clientSecret);
         };
     }
 }

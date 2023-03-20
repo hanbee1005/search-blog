@@ -5,14 +5,15 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.experimental.FieldDefaults;
 
+import java.util.List;
+
 @Getter
 @Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class BlogDto {
-    String blogname;
-    String contents;
-    String datetime;
-    String thumbnail;
-    String title;
-    String url;
+public class SearchBlogDto {
+    int page;
+    int size;
+    boolean hasNext;
+
+    List<BlogDto> blogs;
 }
