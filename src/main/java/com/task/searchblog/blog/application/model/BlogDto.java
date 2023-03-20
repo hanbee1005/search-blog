@@ -1,6 +1,6 @@
 package com.task.searchblog.blog.application.model;
 
-import com.task.searchblog.blog.adapter.out.web.model.BlogResponse;
+import com.task.searchblog.blog.adapter.out.web.model.KakaoSearchBlogResponse;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -17,7 +17,7 @@ public class BlogDto {
     String title;
     String url;
 
-    public static BlogDto of(BlogResponse response) {
+    public static BlogDto of(KakaoSearchBlogResponse.Document response) {
         return BlogDto.builder()
                 .blogname(response.getBlogname())
                 .contents(response.getContents())

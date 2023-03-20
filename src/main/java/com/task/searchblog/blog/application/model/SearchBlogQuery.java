@@ -1,6 +1,5 @@
 package com.task.searchblog.blog.application.model;
 
-import com.task.searchblog.blog.adapter.out.web.model.BlogResponse;
 import com.task.searchblog.blog.adapter.out.web.model.KakaoSearchBlogResponse;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -20,7 +19,7 @@ public class SearchBlogQuery {
     List<BlogDto> blogs;
 
     @Builder
-    private SearchBlogQuery(int page, int size, boolean isEnd, List<BlogResponse> blogs) {
+    private SearchBlogQuery(int page, int size, boolean isEnd, List<KakaoSearchBlogResponse.Document> blogs) {
         this.page = page;
         this.size = size;
         this.hasNext = !isEnd;

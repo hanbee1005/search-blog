@@ -32,7 +32,7 @@ class BlogQueryServiceTest {
     public void searchBlog() {
         // given
         String query = "인테리어";
-        SearchBlogSortType sort = SearchBlogSortType.accuracy;
+        SearchBlogSortType sort = SearchBlogSortType.ACCURACY;
         int page = 1;
         int size = 10;
         SearchBlogRequest request = MockModel.getSearchBlogRequest(query, sort, page, size);

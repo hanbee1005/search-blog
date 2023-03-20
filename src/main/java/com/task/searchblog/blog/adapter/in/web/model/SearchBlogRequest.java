@@ -16,7 +16,7 @@ public class SearchBlogRequest {
     @NotBlank
     String query;
 
-    SearchBlogSortType sort;
+    SearchBlogSortType sort = SearchBlogSortType.ACCURACY;
 
     @Min(1) @Max(50)
     Integer page = 1;

@@ -1,7 +1,6 @@
 package com.task.searchblog.blog.adapter.out.web.model;
 
 import com.task.searchblog.blog.adapter.in.web.model.SearchBlogRequest;
-import com.task.searchblog.common.constant.SearchBlogSortType;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -10,11 +9,11 @@ import lombok.experimental.FieldDefaults;
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class KakaoSearchBlogRequest {
     String query;
-    SearchBlogSortType sort;
+    String sort;
     int page;
     int size;
 
     public static KakaoSearchBlogRequest of(SearchBlogRequest request) {
-        return new KakaoSearchBlogRequest(request.getQuery(), request.getSort(), request.getPage(), request.getSize());
+        return new KakaoSearchBlogRequest(request.getQuery(), request.getSort().getKakaoCode(), request.getPage(), request.getSize());
     }
 }
