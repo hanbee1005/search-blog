@@ -7,7 +7,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -17,12 +16,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @Slf4j
 @SpringBootTest
-@Transactional
 class TermRedisRepositoryTest {
 
     @Autowired TermRedisRepository termRedisRepository;
 
-    private List<String> keys = List.of("인테리어", "테스트코드");
+    private final List<String> keys = List.of("인테리어", "테스트코드");
 
     @BeforeEach
     public void init() {
@@ -51,7 +49,7 @@ class TermRedisRepositoryTest {
     public void updateCount() {
         // given
         String key = keys.get(0);
-        Term term = termRedisRepository.findById(key).orElse(Term.create(key));
+        Term term = termRedisRepository.findById(key).orElseThrow();
 
         // when
         term.updateCount();
