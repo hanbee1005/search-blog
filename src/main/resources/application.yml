@@ -1,3 +1,11 @@
+server:
+  servlet:
+    context-path: /
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+
 spring:
 #  datasource:
 #    url: jdbc:h2:tcp://localhost/~/search-blog
