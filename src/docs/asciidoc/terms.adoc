@@ -1,0 +1,32 @@
+ifndef::snippets[]
+:snippets: ./build/generated-snippets
+endif::[]
+
+= Terms
+
+== [small]#인기 검색어 조회#
+[red big]#Overview#
+----
+블로그 검색 시 사용된 검색어 중 인기 검색어 Top 10을 조회하는 API 입니다.
+----
+
+[red big]#HTTP request#
+
+include::{snippets}/search-terms/http-request.adoc[]
+
+[red big]#CURL request#
+
+include::{snippets}/search-terms/curl-request.adoc[]
+
+[red big]#HTTP response#
+
+include::{snippets}/search-terms/http-response.adoc[]
+
+[red big]#Request parameters#
+
+include::{snippets}/search-terms/request-parameters.adoc[]
+
+
+[red big]#Response fields#
+
+include::{snippets}/search-terms/response-fields.adoc[]

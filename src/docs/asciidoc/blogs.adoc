@@ -1,0 +1,32 @@
+ifndef::snippets[]
+:snippets: ./build/generated-snippets
+endif::[]
+
+= Blogs
+
+== [small]#블로그 조회#
+[red big]#Overview#
+----
+Kakao API 를 활용하여 블로그 목록을 조회하는 API 입니다.
+----
+
+[red big]#HTTP request#
+
+include::{snippets}/search-blogs/http-request.adoc[]
+
+[red big]#CURL request#
+
+include::{snippets}/search-blogs/curl-request.adoc[]
+
+[red big]#HTTP response#
+
+include::{snippets}/search-blogs/http-response.adoc[]
+
+[red big]#Request parameters#
+
+include::{snippets}/search-blogs/request-parameters.adoc[]
+
+
+[red big]#Response fields#
+
+include::{snippets}/search-blogs/response-fields.adoc[]

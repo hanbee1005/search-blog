@@ -17,7 +17,7 @@ public class BlogRestController {
     private final BlogQueryService blogQueryService;
     private final TermLockFacade termLockFacade;
 
-    @GetMapping("/blog")
+    @GetMapping("/v1/blogs")
     public CommonResponse<SearchBlogResponse> searchBlog(@Valid SearchBlogRequest request) {
         SearchBlogResponse searchBlogResponse = SearchBlogResponse.of(blogQueryService.searchBlog(request));
         termLockFacade.increaseTermCount(request.getQuery());

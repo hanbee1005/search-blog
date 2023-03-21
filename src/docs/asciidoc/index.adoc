@@ -1,0 +1,15 @@
+= SEARCH BLOG
+Hanbee Son <sonhanbi1002@gmail.com>
+:doctype: book
+:icons: font
+:source-highlighter: highlightjs
+:toc: left
+:toclevels: 3
+:sectlinks:
+:sectnums:
+:docinfo: shared-head
+
+SEARCH BLOG 인터페이스 문서
+
+include::blogs.adoc[]
+include::terms.adoc[]

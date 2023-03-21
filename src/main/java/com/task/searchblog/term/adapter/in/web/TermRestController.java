@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class TermRestController {
     private final TermQueryService termQueryService;
 
-    @GetMapping("/search/term")
+    @GetMapping("/v1/terms")
     public CommonResponse<SearchTermResponse> searchTopTerm(@RequestParam(required = false, defaultValue = "10") Integer limit) {
         return CommonResponse.ok(SearchTermResponse.of(termQueryService.searchTopTerm(limit)));
     }

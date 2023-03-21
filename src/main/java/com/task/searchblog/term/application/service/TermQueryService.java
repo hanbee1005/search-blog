@@ -1,7 +1,7 @@
 package com.task.searchblog.term.application.service;
 
 import com.task.searchblog.term.adapter.out.persistance.TermRedisRepository;
-import com.task.searchblog.term.application.model.TermQuery;
+import com.task.searchblog.term.application.model.TermDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -17,10 +17,10 @@ import java.util.stream.Collectors;
 public class TermQueryService {
     private final TermRedisRepository termRedisRepository;
 
-    public List<TermQuery> searchTopTerm(int limit) {
+    public List<TermDto> searchTopTerm(int limit) {
         return termRedisRepository.findTop10ByOrderByCountDesc()
                 .stream()
-                .map(term -> new TermQuery(term.getTerm(), (long) term.getCount()))
+                .map(term -> new TermDto(term.getTerm(), (long) term.getCount()))
                 .collect(Collectors.toList());
     }
 }
