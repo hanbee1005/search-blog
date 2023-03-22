@@ -15,7 +15,7 @@ public class NaverSearchBlogAdapter implements SearchBlogAdapter {
 
     public SearchBlogDto searchBlog(String query, SearchBlogSortType sort, int page, int size) {
         NaverSearchBlogResponse response = getClient().searchBlog(query, sort.getNaverCode(), page, size);
-        return response.toDto(page, size);
+        return response.toDto(page);
     }
 
     private NaverSearchBlogClient getClient() { return naverSearchBlogClientProvider.getIfAvailable(); }

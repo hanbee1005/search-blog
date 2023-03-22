@@ -57,10 +57,10 @@ public class KakaoSearchBlogResponse implements SearchBlogResponse {
         }
     }
 
-    public SearchBlogDto toDto(int page, int size) {
+    public SearchBlogDto toDto(int page) {
         return SearchBlogDto.builder()
                 .page(page)
-                .size(size)
+                .size(documents.size())
                 .hasNext(!meta.isEnd)
                 .blogs(documents.stream().map(Document::toDto).collect(Collectors.toList()))
                 .build();

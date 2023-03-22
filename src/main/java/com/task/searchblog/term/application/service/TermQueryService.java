@@ -18,8 +18,9 @@ public class TermQueryService {
     private final TermRedisRepository termRedisRepository;
 
     public List<TermDto> searchTopTerm(int limit) {
-        return termRedisRepository.findTop10ByOrderByCountDesc()
+        return termRedisRepository.findByOrderByCountDesc()
                 .stream()
+                .limit(limit)
                 .map(term -> new TermDto(term.getTerm(), (long) term.getCount()))
                 .collect(Collectors.toList());
     }

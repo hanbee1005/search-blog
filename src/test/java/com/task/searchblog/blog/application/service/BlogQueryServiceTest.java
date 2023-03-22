@@ -38,7 +38,7 @@ class BlogQueryServiceTest {
         SearchBlogRequest request = MockModel.getSearchBlogRequest(query, sort, page, size);
 
         KakaoSearchBlogResponse kakaoSearchBlogResponse = MockModel.getKakaoSearchBlogResponse(size);
-        given(kakaoSearchBlogAdapter.searchBlog(any(), any(), anyInt(), anyInt())).willReturn(kakaoSearchBlogResponse.toDto(page, size));
+        given(kakaoSearchBlogAdapter.searchBlog(any(), any(), anyInt(), anyInt())).willReturn(kakaoSearchBlogResponse.toDto(page));
 
         // when
         SearchBlogDto response = blogQueryService.searchBlog(request);

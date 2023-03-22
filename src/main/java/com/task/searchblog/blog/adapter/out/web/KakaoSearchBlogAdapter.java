@@ -22,7 +22,7 @@ public class KakaoSearchBlogAdapter implements SearchBlogAdapter {
     public SearchBlogDto searchBlog(String query, SearchBlogSortType sort, int page, int size) {
         try {
             KakaoSearchBlogResponse response = getClient().searchBlog(query, sort.getKakaoCode(), page, size);
-            return response.toDto(page, size);
+            return response.toDto(page);
         } catch (KakaoClientException e) {
             log.error("[Kakao Client Error] {}", e.getMessage());
             return naverSearchBlogAdapter.searchBlog(query, sort, page, size);

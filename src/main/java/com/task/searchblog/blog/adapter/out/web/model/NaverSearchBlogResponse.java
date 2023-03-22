@@ -47,10 +47,10 @@ public class NaverSearchBlogResponse implements SearchBlogResponse {
         }
     }
 
-    public SearchBlogDto toDto(int page, int size) {
+    public SearchBlogDto toDto(int page) {
         return SearchBlogDto.builder()
                 .page(page)
-                .size(size)
+                .size(items.size())
                 .hasNext(isEnd())
                 .blogs(items.stream().map(Item::toDto).collect(Collectors.toList()))
                 .build();
