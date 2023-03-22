@@ -48,6 +48,8 @@ class TermLockFacadeTest {
             });
         }
 
+        Thread.sleep(threadCount * 20);
+
         // then
         countDownLatch.await();
         Term findTerm = termRedisRepository.findById(termId).orElseThrow();
