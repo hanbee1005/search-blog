@@ -42,4 +42,4 @@ $ curl 'http://localhost/v1/terms' -i -X GET \
 ***자세한 사항은 상단 API 문서를 통해 확인하실 수 있습니다. (jar 파일 실행 후 접근이 가능합니다.)***
 
 ## 빌드 결과 확인
-[Download .jar]()
+[Download .jar](https://drive.google.com/file/d/1sxVrnLZdUl2-H741Vjcb21PYFdOGLM4d/view?usp=share_link)
