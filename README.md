@@ -19,7 +19,9 @@ Kakao Api 를 활용한 블로그 검색 및 인기 검색어 목록 조회 기�
     - 레디스에 저장된 키워드 중 Top10 키워드를 조회하여 반환합니다.
 
 ## 기능 확인
-**0. jar 파일을 다운받아 실행합니다.** ```java -jar JAR_FILE_NAME.jar```
+**0-1. jar 파일을 다운받아 실행합니다.**
+- 실행 전 로컬 redis 설치가 필요합니다. (host: localhost, port: 6379)
+- ex. ```java -jar JAR_FILE_NAME.jar```
                          
 
 **1. 블로그 검색**
